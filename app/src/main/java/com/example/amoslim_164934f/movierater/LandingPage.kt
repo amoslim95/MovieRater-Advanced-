@@ -36,16 +36,16 @@ class LandingPage : AppCompatActivity() {
             intent.putExtra("notSuitable", MovieListItem()[i].notSuitable)
             intent.putExtra("movieViolence", MovieListItem()[i].movieViolence)
             intent.putExtra("movieLangUser", MovieListItem()[i].movieLaugUser)
-
             startActivity(intent)
+            finish()
         }
 
     }
      fun MovieListItem():Array<Movie>{
          var item1= Movie("Avengers", "Movie about people hitting each other", "2010","English","Yes","","")
-         var item2= Movie("Venom", "When Eddie Brock acquires", "2018","English","No","(Violence)","(Langauge)")
+         //var item2= Movie("Venom", "When Eddie Brock acquires", "2018","English","No","(Violence)","(Langauge)")
 
-         var MovieListArray = arrayOf(item1,item2)
+         var MovieListArray = arrayOf(item1)
          return MovieListArray
      }
 
@@ -96,12 +96,11 @@ class LandingPage : AppCompatActivity() {
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
 
-        if (v?.id == R.id.tvDemo)
+        if (v?.id == R.id.txtMovieName)
             menu?.add(1, 1001, 1, "Edit")
 
 
     }
-
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
 
