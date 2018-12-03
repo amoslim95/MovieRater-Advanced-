@@ -6,15 +6,15 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import kotlinx.android.synthetic.main.landing_page.*
+import android.widget.AdapterView.AdapterContextMenuInfo
+
 
 class LandingPage : AppCompatActivity() {
 
     lateinit var listView: ListView
+    var selectedMovie: Movie = Movie("","","" ,"", "", "", "")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
@@ -25,9 +25,12 @@ class LandingPage : AppCompatActivity() {
 
         adapter.notifyDataSetChanged()
 
-        registerForContextMenu(tvDemo)
+        registerForContextMenu(listView)
+
+
 
         listView.setOnItemClickListener { adapterView, view,i, l->
+
             val intent = Intent(this@LandingPage, ViewMovieDetail::class.java)
             intent.putExtra("movieTitle", MovieListItem()[i].movieTitle)
             intent.putExtra("movieDescription", MovieListItem()[i].movieDescription)
@@ -35,19 +38,24 @@ class LandingPage : AppCompatActivity() {
             intent.putExtra("releaseDate", MovieListItem()[i].releaseDate)
             intent.putExtra("notSuitable", MovieListItem()[i].notSuitable)
             intent.putExtra("movieViolence", MovieListItem()[i].movieViolence)
-            intent.putExtra("movieLangUser", MovieListItem()[i].movieLaugUser)
+            intent.putExtra("movieLaugUser", MovieListItem()[i].movieLaugUser)
+
             startActivity(intent)
             finish()
+
+
         }
 
     }
-     fun MovieListItem():Array<Movie>{
-         var item1= Movie("Avengers", "Movie about people hitting each other", "2010","English","Yes","","")
-         //var item2= Movie("Venom", "When Eddie Brock acquires", "2018","English","No","(Violence)","(Langauge)")
+    fun MovieListItem():Array<Movie>{
+        var item1= Movie("Avengers", "Movie about people hitting each other", "2010","English","Yes","","")
+        var item2= Movie("Venom", "the powers of a symbiote, he will have to release his alter-ego “Venom” to save his life.", "2018","Chinese","No","(Violence)","(Langauge)")
 
-         var MovieListArray = arrayOf(item1)
-         return MovieListArray
-     }
+        var MovieListArray = arrayOf(item1,item2)
+
+        return MovieListArray
+    }
+
 
     class MovieListAdapter (private var activity: Activity,private var items: Array<Movie>):BaseAdapter() {
         private class ViewHolder(row: View?) {
@@ -96,8 +104,14 @@ class LandingPage : AppCompatActivity() {
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
 
-        if (v?.id == R.id.txtMovieName)
+        if (v?.id == R.id.lvMovieList){
+            val lv = v as ListView
+            val acmi = menuInfo as AdapterContextMenuInfo
+            val obj = lv.getItemAtPosition(acmi.position) as Movie
+            this.selectedMovie = obj
             menu?.add(1, 1001, 1, "Edit")
+        }
+
 
 
     }
@@ -108,6 +122,13 @@ class LandingPage : AppCompatActivity() {
         if(item?.itemId ==1001){
 
             val intent = Intent(this,editMovie::class.java)
+            intent.putExtra("movieTitle", this.selectedMovie.movieTitle)
+            intent.putExtra("movieDescription", this.selectedMovie.movieDescription)
+            intent.putExtra("releaseDate", this.selectedMovie.releaseDate)
+            intent.putExtra("movieLanguage", this.selectedMovie.movieLanguage )
+            intent.putExtra("notSuitable",this.selectedMovie.notSuitable)
+            intent.putExtra("movieViolence",this.selectedMovie.movieViolence)
+            intent.putExtra("movieLaugUser",this.selectedMovie.movieLaugUser)
             startActivity(intent)
 
         }
