@@ -7,14 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.*
-import kotlinx.android.synthetic.main.landing_page.*
 import android.widget.AdapterView.AdapterContextMenuInfo
 
 
 class LandingPage : AppCompatActivity() {
 
     lateinit var listView: ListView
-    var selectedMovie: Movie = Movie("","","" ,"", "", "", "")
+    var selectedMovie: Movie = Movie("","","" ,"", "", "", "",0.0f, "")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
@@ -25,12 +24,22 @@ class LandingPage : AppCompatActivity() {
 
         adapter.notifyDataSetChanged()
 
+
+
         registerForContextMenu(listView)
 
+     /*   val lpMovietitle = newMovie.movieTitle
+        val lpDec = newMovie.movieDescription
+        val lpLang = newMovie.movieLanguage
+        val lpDaterelease = newMovie.releaseDate
+        val lpSuitable = newMovie.notSuitable
+        val lpSuitVio = newMovie.movieViolence
+        val lpSuitLang = newMovie.movieLaugUser
+*/
 
 
-        listView.setOnItemClickListener { adapterView, view,i, l->
 
+       listView.setOnItemClickListener { adapterView, view,i, l->
             val intent = Intent(this@LandingPage, ViewMovieDetail::class.java)
             intent.putExtra("movieTitle", MovieListItem()[i].movieTitle)
             intent.putExtra("movieDescription", MovieListItem()[i].movieDescription)
@@ -42,22 +51,48 @@ class LandingPage : AppCompatActivity() {
 
             startActivity(intent)
             finish()
-
-
         }
 
     }
-    fun MovieListItem():Array<Movie>{
+
+ /*fun MovieListItem():Array<Movie>{
         var item1= Movie("Avengers", "Movie about people hitting each other", "2010","English","Yes","","")
         var item2= Movie("Venom", "the powers of a symbiote, he will have to release his alter-ego “Venom” to save his life.", "2018","Chinese","No","(Violence)","(Langauge)")
+        var item3= Movie("", "", "","","","","")
 
         var MovieListArray = arrayOf(item1,item2)
 
         return MovieListArray
+    }*/
+
+    fun MovieListItem():ArrayList<Movie> {
+
+
+        val movieTitle = intent.getStringExtra("movieTitle")
+        val movieDescription = intent.getStringExtra("movieDescription")
+        val releaseDate = intent.getStringExtra("releaseDate")
+        val movieLanguage = intent.getStringExtra("movieLanguage")
+        val notSuitable = intent.getStringExtra("notSuitable")
+        val movieViolence = intent.getStringExtra("movieViolence")
+        val movieLaugUser = intent.getStringExtra("movieLaugUser")
+        val movieRating = intent.getFloatExtra("movieRating",0.0f)
+        val RateMovieTxt = intent.getStringExtra("RateMovieTxt")
+
+
+        val result = ArrayList<Movie>()
+
+        //val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser)
+
+
+        for (i in 0..0) {
+            val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating,RateMovieTxt)
+            result.add(newMovie)
+        }
+
+        return result
     }
 
-
-    class MovieListAdapter (private var activity: Activity,private var items: Array<Movie>):BaseAdapter() {
+    class MovieListAdapter (private var activity: Activity, private var items: ArrayList<Movie>):BaseAdapter() {
         private class ViewHolder(row: View?) {
             var tvImage: ImageView? = null
             var tvName: TextView? = null
@@ -80,8 +115,9 @@ class LandingPage : AppCompatActivity() {
                 view = convertView
                 viewHolder = view.tag as ViewHolder
             }
+
             var SMovie = items[position]
-            viewHolder.tvName?.text = SMovie.movieTitle.toString()
+            viewHolder.tvName?.text = SMovie.movieTitle
             return  view as View
         }
 
@@ -129,6 +165,8 @@ class LandingPage : AppCompatActivity() {
             intent.putExtra("notSuitable",this.selectedMovie.notSuitable)
             intent.putExtra("movieViolence",this.selectedMovie.movieViolence)
             intent.putExtra("movieLaugUser",this.selectedMovie.movieLaugUser)
+            intent.putExtra("movieRating", this.selectedMovie.movieRating)
+            intent.putExtra("RateMovieTxt", this.selectedMovie.RateMovieTxt)
             startActivity(intent)
 
         }

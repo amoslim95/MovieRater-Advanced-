@@ -49,7 +49,8 @@ class rateMovie : AppCompatActivity() {
             val movieViolence = intent.getStringExtra("movieViolence")
             val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
-            val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser)
+
+            val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating=null, RateMovieTxt ="")
 
             val miMovietitle = newMovie.movieTitle
             val miDec = newMovie.movieDescription
@@ -75,11 +76,6 @@ class rateMovie : AppCompatActivity() {
             intent.putExtra("movieStar",miRateStar)
             intent.putExtra("movieRatintxt", miRateMovie)
             setResult(Activity.RESULT_OK, intent)
-
-            //intent.putExtra("movieRateTxt",RateMovieTxt )
-            Toast.makeText(applicationContext, "Rate review= ${miRateMovie}"
-                    + "\n" + "Star Rate =${miRateStar}"
-                    , Toast.LENGTH_SHORT).show()
             finish()
 
             val actionbar = supportActionBar

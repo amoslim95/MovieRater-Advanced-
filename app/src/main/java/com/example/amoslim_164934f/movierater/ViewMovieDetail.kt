@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.view_movie_details.*
 
@@ -27,7 +28,7 @@ class ViewMovieDetail : AppCompatActivity() {
         val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
 
-        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser)
+        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating=null,RateMovieTxt ="")
 
         NameText.setText(newMovie.movieTitle)
         ovtext.setText(newMovie.movieDescription)
@@ -50,10 +51,22 @@ class ViewMovieDetail : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
+
         val intent = Intent(this, LandingPage::class.java)
+        intent.putExtra("movieTitle",NameText.text.toString() )
+        intent.putExtra("movieDescription",  ovtext.text.toString())
+        intent.putExtra("releaseDate",DateText.text.toString() )
+        intent.putExtra("movieLanguage", langtxt.text.toString())
+        intent.putExtra("notSuitable",suitabletxt.text.toString())
+        intent.putExtra("movieViolence",viotxt.text.toString())
+        intent.putExtra("movieLaugUser",lantxt.text.toString())
+        intent.putExtra("movieRating", ratestar.numStars.toFloat())
+        intent.putExtra("RateMovieTxt",rate_movie_txt.text.toString())
         startActivity(intent)
         finish()
     }
+
 
     // - onCreateContextMenu
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -104,7 +117,7 @@ class ViewMovieDetail : AppCompatActivity() {
             val rateStar = data!!.getFloatExtra("movieStar", 0.0f)
                     ratestar.setRating(rateStar.toFloat())
 
-                val ratemovieText = data!!.getStringExtra ("movieRatintxt")
+                val ratemovieText = data!!.getStringExtra ("movieRatingtxt")
                   rate_movie_txt.setText(ratemovieText)
 
 
