@@ -62,11 +62,8 @@ class ViewMovieDetail : AppCompatActivity() {
         intent.putExtra("movieRating", ratestar.numStars.toFloat())
         intent.putExtra("RateMovieTxt",rate_movie_txt.text.toString())
         startActivityForResult(intent,1)
-        Toast.makeText(applicationContext, "Title = ${NameText.text}"
-                + "\n" + "star rate${ratestar.getRating()}"
-                + "\n" + "rating text${rate_movie_txt.text}"
 
-                , Toast.LENGTH_SHORT).show()
+
 
     }
 
@@ -85,13 +82,13 @@ class ViewMovieDetail : AppCompatActivity() {
 
             val intent = Intent(this, rateMovie::class.java)
 
-            intent.putExtra("movieTitle",NameText.toString() )
-            intent.putExtra("movieDescription",  ovtext.toString())
-            intent.putExtra("releaseDate",DateText.toString() )
-            intent.putExtra("movieLanguage", langtxt.toString())
-            intent.putExtra("notSuitable",suitabletxt.toString())
-            intent.putExtra("movieViolence",viotxt.toString())
-            intent.putExtra("movieLaugUser",lantxt.toString())
+            intent.putExtra("movieTitle",NameText.text.toString() )
+            intent.putExtra("movieDescription",  ovtext.text.toString())
+            intent.putExtra("releaseDate",DateText.text.toString() )
+            intent.putExtra("movieLanguage", langtxt.text.toString())
+            intent.putExtra("notSuitable",suitabletxt.text.toString())
+            intent.putExtra("movieViolence",viotxt.text.toString())
+            intent.putExtra("movieLaugUser",lantxt.text.toString())
             startActivityForResult(intent, 2)
 
         }

@@ -14,16 +14,25 @@ import android.widget.AdapterView.AdapterContextMenuInfo
 class LandingPage : AppCompatActivity() {
 
     lateinit var listView: ListView
+
     var selectedMovie: Movie = Movie("","","" ,"", "", "", "",0.0f,"")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
 
-        listView = this.findViewById(R.id.lvMovieList)
-        var adapter = MovieListAdapter(this, MovieListItem())
-        listView.adapter=adapter
+        this.listView = this.findViewById(R.id.lvMovieList)
+        var sizeOfMovie = MovieListItem().size
+        if(sizeOfMovie == null ||sizeOfMovie == 0 ){
 
-        adapter.notifyDataSetChanged()
+        }
+        else
+        {
+            var adapter = MovieListAdapter(this, MovieListItem())
+            listView.adapter=adapter
+
+            adapter.notifyDataSetChanged()
+        }
+
 
 
 
@@ -58,37 +67,35 @@ class LandingPage : AppCompatActivity() {
 
 
 
-            val movieTitle = intent.getStringExtra("movieTitle")
-            val movieDescription = intent.getStringExtra("movieDescription")
-            val releaseDate = intent.getStringExtra("releaseDate")
-            val movieLanguage = intent.getStringExtra("movieLanguage")
-            val notSuitable = intent.getStringExtra("notSuitable")
-            val movieViolence = intent.getStringExtra("movieViolence")
-            val movieLaugUser = intent.getStringExtra("movieLaugUser")
-            val movieRating = intent.getFloatExtra("movieRating",0.0f)
-            val RateMovieTxt = intent.getStringExtra("RateMovieTxt")
-
+            val movieTitle: String? = intent.getStringExtra("movieTitle")
+            val movieDescription:String? = intent.getStringExtra("movieDescription")
+            val releaseDate:String? = intent.getStringExtra("releaseDate")
+            val movieLanguage:String? = intent.getStringExtra("movieLanguage")
+            val notSuitable:String? = intent.getStringExtra("notSuitable")
+            val movieViolence:String? = intent.getStringExtra("movieViolence")
+            val movieLaugUser:String? = intent.getStringExtra("movieLaugUser")
+            val movieRating:Float? = intent.getFloatExtra("movieRating",0.0f)
+            val RateMovieTxt:String? = intent.getStringExtra("RateMovieTxt")
 
             val result = ArrayList<Movie>()
 
-            //val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser)
 
-            for (i in 0..0) {
-                val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating,RateMovieTxt)
+            if(movieTitle == null || movieDescription == null || releaseDate == null || movieLanguage == null){
 
-                result.add(newMovie)
             }
-        /*var item1= Movie("Venom","When Eddie Brock acquires the powers of a symbiote, he will have to release his alter-ego “Venom” to save his life.",
-                "03-10-2018","English ","No","(Violence)","(Language)",0.0f,"Bad")
+            else
+            {
+                //val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser)
+                    val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable!!, movieViolence, movieLaugUser,movieRating,RateMovieTxt)
 
-        var MovieListrArray = arrayListOf(item1)
-        return MovieListrArray*/
-        Toast.makeText(applicationContext, "Title = ${movieTitle}"
-                + "\n" + "star rate${movieRating}"
-                + "\n" + "rating text${RateMovieTxt}"
-                + "\n\n\n" + "listview"
+                    result.add(newMovie)
 
-                , Toast.LENGTH_LONG).show()
+            }
+
+
+
+
+
         return result
 
         }

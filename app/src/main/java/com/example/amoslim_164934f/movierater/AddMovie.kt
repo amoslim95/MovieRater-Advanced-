@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_movie.*
-import java.util.*
+
 
 class AddMovie : AppCompatActivity() {
 

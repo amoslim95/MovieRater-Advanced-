@@ -16,6 +16,10 @@ class rateMovie : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.rate_movie)
 
+
+        val movieTitle = intent.getStringExtra("movieTitle")
+
+        rate_text_title.setText(movieTitle)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
     }
