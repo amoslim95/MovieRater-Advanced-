@@ -1,7 +1,7 @@
 package com.example.amoslim_164934f.movierater
 
 import android.content.Intent
-import android.app.DatePickerDialog
+
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -105,7 +105,7 @@ class AddMovie : AppCompatActivity() {
                     }
 
                     // Show Toast Display
-                    Toast.makeText(applicationContext, "Title = ${titlename}"
+                   /* Toast.makeText(applicationContext, "Title = ${titlename}"
                             + "\n" + "Overview = ${desc}"
                             + "\n" + "Release date = ${resdate}"
                             + "\n" + "Lauguage = ${laugauge}"
@@ -113,7 +113,7 @@ class AddMovie : AppCompatActivity() {
                             + "\n" + "Reason: ${NoReason} "
                             + "\n" + "${reasonLang}"
                             + "\n" + "${reasonVio}"
-                            , Toast.LENGTH_SHORT).show()
+                            , Toast.LENGTH_SHORT).show()*/
 
                     if(audichecked == true.toString())
                     {

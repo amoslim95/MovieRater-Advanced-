@@ -31,7 +31,7 @@ class editMovie : AppCompatActivity() {
         val movieViolence = intent.getStringExtra("movieViolence")
         val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
-        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating=null,RateMovieTxt =null)
+        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating= null,RateMovieTxt ="")
         txtname.setText(newMovie.movieTitle)
         txtdesc.setText((newMovie.movieDescription))
         txtdaterelease.setText((newMovie.releaseDate))
@@ -115,7 +115,7 @@ class editMovie : AppCompatActivity() {
         val movieViolence = intent.getStringExtra("movieViolence")
         val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
-        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating=null,RateMovieTxt =null)
+        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating= null,RateMovieTxt ="")
         txtname.setText(newMovie.movieTitle)
         txtdesc.setText((newMovie.movieDescription))
         txtdaterelease.setText((newMovie.releaseDate))
@@ -216,8 +216,34 @@ class editMovie : AppCompatActivity() {
 
         }
         else if (item?.itemId == R.id.miCancel) {
-            val intent = Intent(this, LandingPage::class.java)
+            val movieTitle = intent.getStringExtra("movieTitle")
+            val movieDescription = intent.getStringExtra("movieDescription")
+            val releaseDate = intent.getStringExtra("releaseDate")
+            val movieLanguage = intent.getStringExtra("movieLanguage")
+            val notSuitable = intent.getStringExtra("notSuitable")
+            val movieViolence = intent.getStringExtra("movieViolence")
+            val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
+            val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating= null,RateMovieTxt ="")
+
+
+            var movietitle = newMovie.movieTitle.toString()
+            var movieDesc = newMovie.movieDescription.toString()
+            var daterelease = newMovie.releaseDate.toString()
+            var language =  newMovie.movieLanguage.toString()
+            var Suitable = newMovie.notSuitable.toString()
+            var violence = newMovie.movieViolence.toString()
+            var languageUse = newMovie.movieLaugUser.toString()
+
+
+            val intent = Intent(this, LandingPage::class.java)
+            intent.putExtra("movieTitle",movietitle )
+            intent.putExtra("movieDescription",  movieDesc)
+            intent.putExtra("releaseDate",daterelease )
+            intent.putExtra("movieLanguage", language)
+            intent.putExtra("notSuitable",Suitable)
+            intent.putExtra("movieViolence",violence)
+            intent.putExtra("movieLaugUser",languageUse)
             startActivity(intent)
             finish()
         }

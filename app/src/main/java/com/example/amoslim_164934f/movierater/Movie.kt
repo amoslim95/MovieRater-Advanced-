@@ -7,7 +7,7 @@ import android.media.Rating
  */
 
 // delcare entity class to store object or values
-class Movie (movieTitle : String, movieDescription: String,releaseDate: String, movieLanguage: String,notSuitable: String, movieViolence: String?, movieLaugUser: String?,movieRating: Float?,RateMovieTxt:String?)
+class Movie (movieTitle : String, movieDescription: String,releaseDate: String, movieLanguage: String,notSuitable: String, movieViolence: String?, movieLaugUser: String?,movieRating:Float?,RateMovieTxt: String?)
 {
 
     var movieTitle : String
@@ -28,8 +28,8 @@ class Movie (movieTitle : String, movieDescription: String,releaseDate: String, 
         this.notSuitable = notSuitable
         this.movieViolence= movieViolence
         this.movieLaugUser = movieLaugUser
-        this.movieRating = movieRating
-        this.RateMovieTxt = RateMovieTxt
+       this.movieRating = movieRating
+       this.RateMovieTxt = RateMovieTxt
     }
 
 

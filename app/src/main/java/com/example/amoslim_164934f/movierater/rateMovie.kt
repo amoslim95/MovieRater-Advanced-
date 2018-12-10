@@ -16,9 +16,6 @@ class rateMovie : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.rate_movie)
 
-
-
-
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
     }
@@ -49,8 +46,7 @@ class rateMovie : AppCompatActivity() {
             val movieViolence = intent.getStringExtra("movieViolence")
             val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
-
-            val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating=null, RateMovieTxt ="")
+            val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating= null,RateMovieTxt ="")
 
             val miMovietitle = newMovie.movieTitle
             val miDec = newMovie.movieDescription
@@ -71,11 +67,10 @@ class rateMovie : AppCompatActivity() {
             intent.putExtra("notSuitable", miSuitable)
             intent.putExtra( "movieViolence",miSuitVio )
             intent.putExtra( "movieLaugUser",miSuitLang )
-
-
             intent.putExtra("movieStar",miRateStar)
             intent.putExtra("movieRatintxt", miRateMovie)
             setResult(Activity.RESULT_OK, intent)
+
             finish()
 
             val actionbar = supportActionBar

@@ -28,7 +28,7 @@ class ViewMovieDetail : AppCompatActivity() {
         val movieLaugUser = intent.getStringExtra("movieLaugUser")
 
 
-        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating=null,RateMovieTxt ="")
+        val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser,movieRating= null,RateMovieTxt ="")
 
         NameText.setText(newMovie.movieTitle)
         ovtext.setText(newMovie.movieDescription)
@@ -37,7 +37,6 @@ class ViewMovieDetail : AppCompatActivity() {
         suitabletxt.setText(newMovie.notSuitable)
         viotxt.setText(newMovie.movieViolence)
         lantxt.setText(newMovie.movieLaugUser)
-
 
         registerForContextMenu(txtMovieReview)
 
@@ -51,9 +50,8 @@ class ViewMovieDetail : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+       val intent = Intent(this, LandingPage::class.java)
 
-
-        val intent = Intent(this, LandingPage::class.java)
         intent.putExtra("movieTitle",NameText.text.toString() )
         intent.putExtra("movieDescription",  ovtext.text.toString())
         intent.putExtra("releaseDate",DateText.text.toString() )
@@ -63,10 +61,14 @@ class ViewMovieDetail : AppCompatActivity() {
         intent.putExtra("movieLaugUser",lantxt.text.toString())
         intent.putExtra("movieRating", ratestar.numStars.toFloat())
         intent.putExtra("RateMovieTxt",rate_movie_txt.text.toString())
-        startActivity(intent)
-        finish()
-    }
+        startActivityForResult(intent,1)
+        Toast.makeText(applicationContext, "Title = ${NameText.text}"
+                + "\n" + "star rate${ratestar.getRating()}"
+                + "\n" + "rating text${rate_movie_txt.text}"
 
+                , Toast.LENGTH_SHORT).show()
+
+    }
 
     // - onCreateContextMenu
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -90,8 +92,7 @@ class ViewMovieDetail : AppCompatActivity() {
             intent.putExtra("notSuitable",suitabletxt.toString())
             intent.putExtra("movieViolence",viotxt.toString())
             intent.putExtra("movieLaugUser",lantxt.toString())
-            startActivityForResult(intent, 1)
-
+            startActivityForResult(intent, 2)
 
         }
         return super.onContextItemSelected(item)
@@ -101,29 +102,34 @@ class ViewMovieDetail : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 
-                txtMovieReview.visibility = View.GONE
-                ratestar.visibility = View.VISIBLE
-                rate_movie_txt.visibility = View.VISIBLE
-                // disable user input
-                ratestar.setIsIndicator(true);
+            txtMovieReview.visibility = View.GONE
+            ratestar.visibility = View.VISIBLE
+            rate_movie_txt.visibility = View.VISIBLE
+            // disable user input
+            ratestar.setIsIndicator(true);
 
-
-
-            //val movieRating = intent.getFloatExtra("movieRating", 0.0f)
-
-                //get value from rateMovie
-
-
+            //get value from rateMovie
             val rateStar = data!!.getFloatExtra("movieStar", 0.0f)
-                    ratestar.setRating(rateStar.toFloat())
+            ratestar.setRating(rateStar.toFloat())
 
-                val ratemovieText = data!!.getStringExtra ("movieRatingtxt")
-                  rate_movie_txt.setText(ratemovieText)
+            val ratemovieText = data!!.getStringExtra ("movieRatintxt")
+            rate_movie_txt.setText(ratemovieText)
+        }
 
+        if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
 
-                // rate_movie_txt.setText("testest")
+            txtMovieReview.visibility = View.GONE
+            ratestar.visibility = View.VISIBLE
+            rate_movie_txt.visibility = View.VISIBLE
+            // disable user input
+            ratestar.setIsIndicator(true);
 
+            //get value from rateMovie
+            val rateStar = data!!.getFloatExtra("movieStar", 0.0f)
+            ratestar.setRating(rateStar.toFloat())
 
-            }
+            val ratemovieText = data!!.getStringExtra ("movieRatintxt")
+            rate_movie_txt.setText(ratemovieText)
         }
     }
+}
