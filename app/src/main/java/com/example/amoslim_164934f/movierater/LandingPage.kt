@@ -9,8 +9,6 @@ import android.view.*
 import android.widget.*
 import android.widget.AdapterView.AdapterContextMenuInfo
 
-
-
 class LandingPage : AppCompatActivity() {
 
     lateinit var listView: ListView
@@ -23,21 +21,15 @@ class LandingPage : AppCompatActivity() {
         this.listView = this.findViewById(R.id.lvMovieList)
         var sizeOfMovie = MovieListItem().size
         if(sizeOfMovie == null ||sizeOfMovie == 0 ){
-
         }
         else
         {
             var adapter = MovieListAdapter(this, MovieListItem())
             listView.adapter=adapter
-
             adapter.notifyDataSetChanged()
         }
 
-
-
-
         registerForContextMenu(listView)
-
 
        listView.setOnItemClickListener { adapterView, view,i, l->
             val intent = Intent(this@LandingPage, ViewMovieDetail::class.java)
@@ -62,10 +54,7 @@ class LandingPage : AppCompatActivity() {
 
     }
 
-
     fun MovieListItem():ArrayList<Movie> {
-
-
 
             val movieTitle: String? = intent.getStringExtra("movieTitle")
             val movieDescription:String? = intent.getStringExtra("movieDescription")
@@ -79,27 +68,16 @@ class LandingPage : AppCompatActivity() {
 
             val result = ArrayList<Movie>()
 
-
             if(movieTitle == null || movieDescription == null || releaseDate == null || movieLanguage == null){
 
             }
             else
             {
-                //val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable, movieViolence, movieLaugUser)
                     val newMovie = Movie(movieTitle, movieDescription, releaseDate, movieLanguage, notSuitable!!, movieViolence, movieLaugUser,movieRating,RateMovieTxt)
-
                     result.add(newMovie)
-
             }
-
-
-
-
-
         return result
-
         }
-
 
     class MovieListAdapter (private var activity: Activity, private var items: ArrayList<Movie>):BaseAdapter() {
         private class ViewHolder(row: View?) {
@@ -156,16 +134,12 @@ class LandingPage : AppCompatActivity() {
             this.selectedMovie = obj
             menu?.add(1, 1001, 1, "Edit")
         }
-
-
-
     }
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
 
         //note Item ID is used to identify the menu item being selected by user
         if(item?.itemId ==1001){
-
             val intent = Intent(this,editMovie::class.java)
             intent.putExtra("movieTitle", this.selectedMovie.movieTitle)
             intent.putExtra("movieDescription", this.selectedMovie.movieDescription)
@@ -174,10 +148,7 @@ class LandingPage : AppCompatActivity() {
             intent.putExtra("notSuitable",this.selectedMovie.notSuitable)
             intent.putExtra("movieViolence",this.selectedMovie.movieViolence)
             intent.putExtra("movieLaugUser",this.selectedMovie.movieLaugUser)
-//            intent.putExtra("movieRating", this.selectedMovie.movieRating)
-  //          intent.putExtra("RateMovieTxt", this.selectedMovie.RateMovieTxt)
             startActivity(intent)
-
         }
         return super.onContextItemSelected(item)
     }
@@ -192,7 +163,6 @@ class LandingPage : AppCompatActivity() {
         if (item?.itemId == R.id.miAdd) {
             val intent = Intent(this,AddMovie::class.java)
             startActivity(intent)
-
         }
         return super.onOptionsItemSelected(item)
     }

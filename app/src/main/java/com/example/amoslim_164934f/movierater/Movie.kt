@@ -1,7 +1,5 @@
 package com.example.amoslim_164934f.movierater
 
-import android.media.Rating
-
 /**
  *  Created by Amos Lim 164934F
  */

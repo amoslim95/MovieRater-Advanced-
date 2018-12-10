@@ -10,14 +10,11 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_movie.*
 
-
 class AddMovie : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_movie)
-
-
 
         // Hide or show checkbox when selected not suitable for all audience checkbox
         chbaudi.setOnClickListener{
@@ -43,13 +40,11 @@ class AddMovie : AppCompatActivity() {
         return true
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //Create new menu resource file, main.xml
         menuInflater.inflate(R.menu.addmoviemenu, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.miAdd)
         {

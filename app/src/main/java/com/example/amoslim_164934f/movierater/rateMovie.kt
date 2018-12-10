@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import kotlinx.android.synthetic.main.rate_movie.*
 
 
@@ -16,14 +15,12 @@ class rateMovie : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.rate_movie)
 
-
         val movieTitle = intent.getStringExtra("movieTitle")
 
         rate_text_title.setText(movieTitle)
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
     }
-
     //create back button in action bar
     override fun onSupportNavigateUp(): Boolean {
 
@@ -40,8 +37,6 @@ class rateMovie : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.miSubmit)
         {
-
-
             val movieTitle = intent.getStringExtra("movieTitle")
             val movieDescription = intent.getStringExtra("movieDescription")
             val releaseDate = intent.getStringExtra("releaseDate")

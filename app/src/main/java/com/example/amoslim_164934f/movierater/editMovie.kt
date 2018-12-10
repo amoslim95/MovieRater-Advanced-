@@ -1,6 +1,5 @@
 package com.example.amoslim_164934f.movierater
 
-
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,16 +7,9 @@ import android.view.MenuItem
 import android.content.Intent
 import android.widget.ListView
 import android.view.View
-
 import kotlinx.android.synthetic.main.edit_movie_details.*
 
-import kotlinx.android.synthetic.main.movie_list_row.*
-import org.intellij.lang.annotations.Language
-
-
 class editMovie : AppCompatActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +28,6 @@ class editMovie : AppCompatActivity() {
         txtdesc.setText((newMovie.movieDescription))
         txtdaterelease.setText((newMovie.releaseDate))
 
-
         if (newMovie.movieLanguage == "English")
         {
             rbtneng.isChecked=true
@@ -54,9 +45,6 @@ class editMovie : AppCompatActivity() {
             rbtntamil.isChecked=true
         }
 
-
-
-
         if (newMovie.notSuitable == "No"){
             chbaudi.isChecked = true
 
@@ -73,7 +61,6 @@ class editMovie : AppCompatActivity() {
 
         }
 
-
         chbaudi.setOnClickListener{
             if(chbaudi.isChecked)
             {
@@ -87,12 +74,9 @@ class editMovie : AppCompatActivity() {
             }
         }
 
-
-
         val actionbar = supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -125,7 +109,6 @@ class editMovie : AppCompatActivity() {
         var violence = movieViolence.toString()
         var languageUse = movieLaugUser.toString()
 
-
         val intent = Intent(this, LandingPage::class.java)
         intent.putExtra("movieTitle",txtname.text.toString() )
         intent.putExtra("movieDescription",  txtdesc.text.toString())
@@ -136,7 +119,6 @@ class editMovie : AppCompatActivity() {
         intent.putExtra("movieLaugUser",languageUse)
         startActivity(intent)
         finish()
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -247,11 +229,8 @@ class editMovie : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
         return super.onOptionsItemSelected(item)
     }
-
-
 }
 
 

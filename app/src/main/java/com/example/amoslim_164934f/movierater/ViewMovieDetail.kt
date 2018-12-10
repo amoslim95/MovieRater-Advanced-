@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-
 import kotlinx.android.synthetic.main.view_movie_details.*
-
 
 class ViewMovieDetail : AppCompatActivity() {
 
