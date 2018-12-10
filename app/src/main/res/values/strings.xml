@@ -28,7 +28,7 @@
     <!--Movie_Details-->
     <string name="lblTitle">Title:</string>
     <string name="lblOverview">Overview:</string>
-    <string name="lblReview">Review:</string>
+    <string name="lblReview">Reviews</string>
     <string name="lblLang">Langauge:</string>
     <string name="lblRate">Release date:</string>
     <string name="lblSuit">Suitable for children below 13:</string>
