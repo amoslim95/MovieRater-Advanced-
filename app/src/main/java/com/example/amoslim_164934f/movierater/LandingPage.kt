@@ -42,13 +42,6 @@ class LandingPage : AppCompatActivity() {
             intent.putExtra("movieLaugUser", MovieListItem()[i].movieLaugUser)
          //   intent.putExtra("movieRating",MovieListItem()[i].movieRating)
           //  intent.putExtra("RateMovieTxt", MovieListItem()[i].RateMovieTxt)
-
-           /*Toast.makeText(applicationContext, "Title = ${ MovieListItem()[i].movieTitle}"
-                   + "\n" + "star rate${MovieListItem()[i].movieRating}"
-                   + "\n" + "rating text${MovieListItem()[i].RateMovieTxt}"
-
-                   , Toast.LENGTH_LONG).show()
-           setResult(Activity.RESULT_OK, intent)*/
             finish()
         }
 
